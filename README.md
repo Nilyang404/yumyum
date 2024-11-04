@@ -3,8 +3,10 @@
 
 ### Description
 A Eatery ordering, rating, and coupon management system. Provides restaurant management system and client. Supports geographic navigation and integrated AI customer service function
-Tech Stack:React,MongoDB,Node and Express.
-External interfaces: Gemini API, Google Map API, AWS SNS
+
+Tech Stack:React, MongoDB, Node and Express.
+
+External interfaces: Gemini API, Google Map API, AWS SES
 ### Usage
 
 ```shell
