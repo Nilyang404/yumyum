@@ -447,7 +447,7 @@ app.put('/api/menu/eatery/edit/:id', authenticateToken, async (req, res) => {
     if (!updatedMenuItem) {
       return res.status(404).send('Menu item not found.');
     }
-    res.status(201).json({
+    res.status(200).json({
       id: updatedMenuItem._id,
       message: 'Menu item updated successfully.',
     });
