@@ -80,10 +80,10 @@ async function fetchAndSendEmail(username, targets) {
     ])
     result = result.map((eatery) => ({
       ...eatery,
-      url: `https://www.yumyum.top/eateryDetails/${eatery.userId}`,
+      url: `YOUR_DOMAIN/eateryDetails/${eatery.userId}`,
     }))
     let params = {
-      Source: 'nilyangcode@gmail.com',
+      Source: 'your email',
       Destination: {
         ToAddresses: targets,
       },
