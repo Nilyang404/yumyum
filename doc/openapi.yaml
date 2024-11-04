@@ -1,0 +1,301 @@
+openapi: 3.0.3
+info:
+  title: YumYum API 1.0.0
+  description: |-
+    The APIs in YumYum, which created by BinChicken.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.0
+servers:
+  - url: https://9900yumyumbackend.vercel.app/api
+tags:
+  - name: login
+    description: User login
+  - name: register
+    description: User register
+  - name: profile
+    description: User prorfile
+paths:
+  /user/login:
+    post:
+      tags:
+        - login
+      summary: Customer login
+      description: Customer by email and password
+      requestBody:
+        description: Customer by email and password
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Login'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginRes'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Pet not found
+        '422':
+          description: Validation exception
+  /eatery/login:
+    post:
+      tags:
+        - login
+      summary: Eatery login
+      description: Eatery by email and password
+      requestBody:
+        description: Eatery by email and password
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Login'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginRes'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Pet not found
+        '422':
+          description: Validation exception
+  /user/register:
+    post:
+      tags:
+        - register
+      summary: Customer register
+      description: Register by username, email and password
+      requestBody:
+        description: Register by username, email and password
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Register'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginRes'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Pet not found
+        '422':
+          description: Validation exception
+  /eatery/register:
+    post:
+      tags:
+        - register
+      summary: Eatery register
+      description: Register by username, email and password
+      requestBody:
+        description: Register by username, email and password
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Register'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginRes'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Pet not found
+        '422':
+          description: Validation exception
+  /profile/user/info:
+    get:
+      tags:
+        - profile
+      summary: Get customer's info
+      description: ''
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserProfile'
+        '400':
+          description: Invalid username supplied
+        '404':
+          description: User not found
+  /profile/user/edit:
+    put:
+      tags:
+        - profile
+      summary: Update customer's profile
+      description: This can only be done by the logged in customer.
+      requestBody:
+        description: Update an existent customer
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EditUserProfile'
+        required: true
+      responses:
+        default:
+          description: successful operation
+  /profile/eatery/info:
+    get:
+      tags:
+        - profile
+      summary: Get customer's info
+      description: ''
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EateryProfile'
+        '400':
+          description: Invalid username supplied
+        '404':
+          description: User not found
+  /profile/eatery/edit:
+    put:
+      tags:
+        - profile
+      summary: Update eatery's profile
+      description: This can only be done by the logged in eatery.
+      requestBody:
+        description: Update an existent eatery
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EditEateryProfile'
+        required: true
+      responses:
+        default:
+          description: successful operation
+components:
+  schemas:
+    Login:
+      required:
+        - email
+        - password
+      type: object
+      properties:
+        email:
+          type: string
+          example: henrietta@gmail.com
+        password:
+          type: string
+          example: 123123
+    Register:
+      required:
+        - username
+        - email
+        - password
+      type: object
+      properties:
+        username:
+          type: string
+          example: henrietta
+        email:
+          type: string
+          example: henrietta@gmail.com
+        password:
+          type: string
+          example: 123123
+    EditUserProfile:
+      type: object
+      properties:
+        username:
+          type: string
+          example: ibis2
+        preferences:
+          type: array
+          items:
+            $ref: '#/components/schemas/Preference'
+    UserProfile:
+      type: object
+      properties:
+        id:
+          type: string
+          example: 65f18925adb6e166fbe8c41b
+        userId:
+          type: string
+          example: 65f18925adb6e166fbe8c41b
+        username:
+          type: string
+          example: ibis2
+        preferences:
+          type: array
+          items:
+            $ref: '#/components/schemas/Preference'
+    Preference:
+      type: string
+      example: Cantonese
+    EditEateryProfile:
+      type: object
+      properties:
+        username:
+          type: string
+          example: ibis2
+        address:
+          type: string
+          example: Ground Floor Cafe, 89 York St, Sydney NSW 2000
+        cuisine:
+          type: array
+          items:
+            $ref: '#/components/schemas/Cuisine'
+    EateryProfile:
+      type: object
+      properties:
+        id:
+          type: string
+          example: 65f18925adb6e166fbe8c41b
+        userId:
+          type: string
+          example: 65f18925adb6e166fbe8c41b
+        username:
+          type: string
+          example: Leible Coffee
+        address:
+          type: string
+          example: Ground Floor Cafe, 89 York St, Sydney NSW 2000
+        cuisine:
+          type: array
+          items:
+            $ref: '#/components/schemas/Cuisine'
+    Cuisine:
+      type: string
+      example: Cantonese
+    LoginRes:
+      type: object
+      properties:
+        token:
+          type: string
+          example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWYyZjQ5MTgwNTlmYjc1YzdhZDc3YzUiLCJlbWFpbCI6ImFiYnkxQGdtYWlsLmNvbSIsImlhdCI6MTcxMDQ2NjI2NywiZXhwIjoxNzEwNTUyNjY3fQ.SwreUvQhPRmc0JfH9sicpU1KjLfWTOzb5gVRo7JUOAk
+    ApiResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        type:
+          type: string
+        message:
+          type: string
+      xml:
+        name: '##default'

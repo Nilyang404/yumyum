@@ -1,0 +1,1062 @@
+{
+	"info": {
+		"_postman_id": "9d8e42c7-2959-48db-9695-4ecf55ae4571",
+		"name": "9900yumyum API",
+		"description": "# 🚀 Get started here\n\nThis template guides you through CRUD operations (GET, POST, PUT, DELETE), variables, and tests.\n\n## 🔖 **How to use this template**\n\n#### **Step 1: Send requests**\n\nRESTful APIs allow you to perform CRUD operations using the POST, GET, PUT, and DELETE HTTP methods.\n\nThis collection contains each of these [request](https://learning.postman.com/docs/sending-requests/requests/) types. Open each request and click \"Send\" to see what happens.\n\n#### **Step 2: View responses**\n\nObserve the response tab for status code (200 OK), response time, and size.\n\n#### **Step 3: Send new Body data**\n\nUpdate or add new data in \"Body\" in the POST request. Typically, Body data is also used in PUT request.\n\n```\n{\n    \"name\": \"Add your name in the body\"\n}\n\n ```\n\n#### **Step 4: Update the variable**\n\nVariables enable you to store and reuse values in Postman. We have created a [variable](https://learning.postman.com/docs/sending-requests/variables/) called `base_url` with the sample request [https://postman-api-learner.glitch.me](https://postman-api-learner.glitch.me). Replace it with your API endpoint to customize this collection.\n\n#### **Step 5: Add tests in the \"Tests\" tab**\n\nTests help you confirm that your API is working as expected. You can write test scripts in JavaScript and view the output in the \"Test Results\" tab.\n\n<img src=\"https://content.pstmn.io/b5f280a7-4b09-48ec-857f-0a7ed99d7ef8/U2NyZWVuc2hvdCAyMDIzLTAzLTI3IGF0IDkuNDcuMjggUE0ucG5n\">\n\n## 💪 Pro tips\n\n- Use folders to group related requests and organize the collection.\n- Add more [scripts](https://learning.postman.com/docs/writing-scripts/intro-to-scripts/) in \"Tests\" to verify if the API works as expected and execute workflows.\n    \n\n## 💡Related templates\n\n[API testing basics](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=e9a37a28-055b-49cd-8c7e-97494a21eb54&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)  \n[API documentation](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=e9c28f47-1253-44af-a2f3-20dce4da1f18&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)  \n[Authorization methods](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=31a9a6ed-4cdf-4ced-984c-d12c9aec1c27&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33547056"
+	},
+	"item": [
+		{
+			"name": "Get data",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/info?id=1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"info"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				},
+				"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+			},
+			"response": []
+		},
+		{
+			"name": "Post data",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+							"});",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Add your name in the body\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/info",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"info"
+					]
+				},
+				"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+			},
+			"response": []
+		},
+		{
+			"name": "Update data",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Successful PUT request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
+							"});",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Add your name in the body\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/info?id=1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"info"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				},
+				"description": "This is a PUT request and it is used to overwrite an existing piece of data. For instance, after you create an entity with a POST request, you may want to modify that later. You can do that using a PUT request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful PUT request typically returns a `200 OK`, `201 Created`, or `204 No Content` response code."
+			},
+			"response": []
+		},
+		{
+			"name": "Delete data",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Successful DELETE request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 202, 204]);",
+							"});",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/info?id=1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"info"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				},
+				"description": "This is a DELETE request, and it is used to delete data that was previously created via a POST request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful DELETE request typically returns a `200 OK`, `202 Accepted`, or `204 No Content` response code."
+			},
+			"response": []
+		},
+		{
+			"name": "/api/user/register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"username\": \"ibis2\",\r\n  \"email\": \"users2@example.com\",\r\n  \"password\": \"password\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/user/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"user",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/eatery/register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"username\": \"ibis2\",\r\n  \"email\": \"users2@example.com\",\r\n  \"password\": \"password\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/eatery/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"eatery",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/user/login",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWYyNjkyMmIxMjA4MWIyNjNiYjVlOGMiLCJlbWFpbCI6InVzZXI5NTI3QGV4YW1wbGUuY29tIiwiaWF0IjoxNzEwNDY2NjQyLCJleHAiOjE3MTA1NTMwNDJ9.75ajSEfXDNWGBQEdSk4l1fRQAlg_VU3V9_rsUHKi-HA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"user9527@example.com\",\r\n  \"password\": \"password\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/user/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"user",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/eatery/login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"user9527@example.com\",\r\n  \"password\": \"password\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/eatery/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"eatery",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/profile/user/info",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWYxODkyNWFkYjZlMTY2ZmJlOGM0MTkiLCJlbWFpbCI6InByb2ZpbGU0QGV4YW1wbGUuY29tIiwiaWF0IjoxNzEwMzI5MDU2LCJleHAiOjE3MTA0MTU0NTZ9.TKL6GkYKqimsoWapFoHQi-nkKCA9WnLJbWaxYG6CPcM",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/profile/user/info",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"profile",
+						"user",
+						"info"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/profile/eatery/info",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWYyNjkyMmIxMjA4MWIyNjNiYjVlOGMiLCJlbWFpbCI6InVzZXI5NTI3QGV4YW1wbGUuY29tIiwiaWF0IjoxNzEwNDY3MTQyLCJleHAiOjE3MTA1NTM1NDJ9.zv_S5ophuBO9I6y9iW4sHkUc9S3hm6gvcyT1tq64_so",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWYxODkyNWFkYjZlMTY2ZmJlOGM0MTkiLCJlbWFpbCI6InByb2ZpbGU0QGV4YW1wbGUuY29tIiwiaWF0IjoxNzEwMzI5MDU2LCJleHAiOjE3MTA0MTU0NTZ9.TKL6GkYKqimsoWapFoHQi-nkKCA9WnLJbWaxYG6CPcM",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/profile/eatery/info",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"profile",
+						"eatery",
+						"info"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/profile/user/edit",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/profile/user/edit",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"profile",
+						"user",
+						"edit"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/profile/eatery/edit",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/profile/user/edit",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"profile",
+						"user",
+						"edit"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/menu/eatery/add",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWYyNjkyMmIxMjA4MWIyNjNiYjVlOGMiLCJlbWFpbCI6InVzZXI5NTI3QGV4YW1wbGUuY29tIiwiaWF0IjoxNzEwNDY2NjQyLCJleHAiOjE3MTA1NTMwNDJ9.75ajSEfXDNWGBQEdSk4l1fRQAlg_VU3V9_rsUHKi-HA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Chicken Burger\",\r\n  \"price\": 7.99,\r\n  \"description\": \"Delicious Chicken burger with cheese and bacon\",\r\n  \"image\": \"https://example.com/images/burger.jpg\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/menu/eatery/add",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"menu",
+						"eatery",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/menu/eatery/edit/:id",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWYyNjkyMmIxMjA4MWIyNjNiYjVlOGMiLCJlbWFpbCI6InVzZXI5NTI3QGV4YW1wbGUuY29tIiwiaWF0IjoxNzEwNDY2NjQyLCJleHAiOjE3MTA1NTMwNDJ9.75ajSEfXDNWGBQEdSk4l1fRQAlg_VU3V9_rsUHKi-HA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Chicken Burger\",\r\n  \"price\": 5.99,\r\n  \"description\": \"Delicious Chicken burger with cheese and bacon\",\r\n  \"image\": \"https://example.com/images/burger.jpg\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/menu/eatery/edit/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"menu",
+						"eatery",
+						"edit",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "65f3a70c953e3997535d13ec"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/menu/eatery/info/:eateryId",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWYyNjkyMmIxMjA4MWIyNjNiYjVlOGMiLCJlbWFpbCI6InVzZXI5NTI3QGV4YW1wbGUuY29tIiwiaWF0IjoxNzEwNDY3MTQyLCJleHAiOjE3MTA1NTM1NDJ9.zv_S5ophuBO9I6y9iW4sHkUc9S3hm6gvcyT1tq64_so",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/menu/eatery/info/:eateryId",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"menu",
+						"eatery",
+						"info",
+						":eateryId"
+					],
+					"variable": [
+						{
+							"key": "eateryId",
+							"value": "65f26922b12081b263bb5e8c"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/menu/item/info/:id",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWYyNjkyMmIxMjA4MWIyNjNiYjVlOGMiLCJlbWFpbCI6InVzZXI5NTI3QGV4YW1wbGUuY29tIiwiaWF0IjoxNzEwNDY3MTQyLCJleHAiOjE3MTA1NTM1NDJ9.zv_S5ophuBO9I6y9iW4sHkUc9S3hm6gvcyT1tq64_so",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/menu/item/info/65f2c9bcbf244d0c4cee5fb1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"menu",
+						"item",
+						"info",
+						"65f2c9bcbf244d0c4cee5fb1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/menu/eatery/delete/:id",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWYyNjkyMmIxMjA4MWIyNjNiYjVlOGMiLCJlbWFpbCI6InVzZXI5NTI3QGV4YW1wbGUuY29tIiwiaWF0IjoxNzEwNDY3MTQyLCJleHAiOjE3MTA1NTM1NDJ9.zv_S5ophuBO9I6y9iW4sHkUc9S3hm6gvcyT1tq64_so",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/menu/eatery/delete/65f2c9bcbf244d0c4cee5fb1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"menu",
+						"eatery",
+						"delete",
+						"65f2c9bcbf244d0c4cee5fb1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/voucher/add",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWYyNjkyMmIxMjA4MWIyNjNiYjVlOGMiLCJlbWFpbCI6InVzZXI5NTI3QGV4YW1wbGUuY29tIiwiaWF0IjoxNzEwNDY3MTQyLCJleHAiOjE3MTA1NTM1NDJ9.zv_S5ophuBO9I6y9iW4sHkUc9S3hm6gvcyT1tq64_so",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"discount\": 99,\r\n  \"expiry\": \"2023-12-31\",\r\n  \"details\": \"This voucher gives you a 99% discount.\",\r\n  \"selected_items\": [\"item1\", \"item2\", \"item3\"],\r\n  \"quantity\": 5\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/voucher/add",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"voucher",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/voucher/edit/:setid",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWYyNjkyMmIxMjA4MWIyNjNiYjVlOGMiLCJlbWFpbCI6InVzZXI5NTI3QGV4YW1wbGUuY29tIiwiaWF0IjoxNzEwNDY3MTQyLCJleHAiOjE3MTA1NTM1NDJ9.zv_S5ophuBO9I6y9iW4sHkUc9S3hm6gvcyT1tq64_so",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"discount\": 66,\r\n  \"expiry\": \"2023-12-31\",\r\n  \"details\": \"This voucher gives you a 99% discount.\",\r\n  \"selected_items\": [\"item1\", \"item2\", \"item3\"],\r\n  \"quantity\": 3\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/voucher/edit/:setid",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"voucher",
+						"edit",
+						":setid"
+					],
+					"variable": [
+						{
+							"key": "setid",
+							"value": "65f26922b12081b263bb5e8c-1710467605300"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/voucher/info/:setid",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWYyNjkyMmIxMjA4MWIyNjNiYjVlOGMiLCJlbWFpbCI6InVzZXI5NTI3QGV4YW1wbGUuY29tIiwiaWF0IjoxNzEwNDY3MTQyLCJleHAiOjE3MTA1NTM1NDJ9.zv_S5ophuBO9I6y9iW4sHkUc9S3hm6gvcyT1tq64_so",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/voucher/info/:setid",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"voucher",
+						"info",
+						":setid"
+					],
+					"variable": [
+						{
+							"key": "setid",
+							"value": "65f26922b12081b263bb5e8c-1710467605300"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/voucher/delete/:setid",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWYyNjkyMmIxMjA4MWIyNjNiYjVlOGMiLCJlbWFpbCI6InVzZXI5NTI3QGV4YW1wbGUuY29tIiwiaWF0IjoxNzEwNDY3MTQyLCJleHAiOjE3MTA1NTM1NDJ9.zv_S5ophuBO9I6y9iW4sHkUc9S3hm6gvcyT1tq64_so",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/voucher/delete/:setid",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"voucher",
+						"delete",
+						":setid"
+					],
+					"variable": [
+						{
+							"key": "setid",
+							"value": "65f26922b12081b263bb5e8c-1710467605300"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/voucher/eatery/info",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWYyNjkyMmIxMjA4MWIyNjNiYjVlOGMiLCJlbWFpbCI6InVzZXI5NTI3QGV4YW1wbGUuY29tIiwiaWF0IjoxNzEwNDY3MTQyLCJleHAiOjE3MTA1NTM1NDJ9.zv_S5ophuBO9I6y9iW4sHkUc9S3hm6gvcyT1tq64_so",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/voucher/eatery/info",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"voucher",
+						"eatery",
+						"info"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/voucher/info",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWYyNjkyMmIxMjA4MWIyNjNiYjVlOGMiLCJlbWFpbCI6InVzZXI5NTI3QGV4YW1wbGUuY29tIiwiaWF0IjoxNzEwNDY3MTQyLCJleHAiOjE3MTA1NTM1NDJ9.zv_S5ophuBO9I6y9iW4sHkUc9S3hm6gvcyT1tq64_so",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/voucher/info",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"voucher",
+						"info"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/voucher/info/single/:id",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWYyNjkyMmIxMjA4MWIyNjNiYjVlOGMiLCJlbWFpbCI6InVzZXI5NTI3QGV4YW1wbGUuY29tIiwiaWF0IjoxNzEwNDY3MTQyLCJleHAiOjE3MTA1NTM1NDJ9.zv_S5ophuBO9I6y9iW4sHkUc9S3hm6gvcyT1tq64_so",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/voucher/info/single/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"voucher",
+						"info",
+						"single",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "65f29128f2695d99d8328c1b"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/voucher/claim/:voucherId",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWYyNjkyMmIxMjA4MWIyNjNiYjVlOGMiLCJlbWFpbCI6InVzZXI5NTI3QGV4YW1wbGUuY29tIiwiaWF0IjoxNzEwNDY3MTQyLCJleHAiOjE3MTA1NTM1NDJ9.zv_S5ophuBO9I6y9iW4sHkUc9S3hm6gvcyT1tq64_so",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/voucher/claim/:voucherId",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"voucher",
+						"claim",
+						":voucherId"
+					],
+					"variable": [
+						{
+							"key": "voucherId",
+							"value": "65f29311569f44994fabc6eb"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/voucher/customer/info",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWYyNjkyMmIxMjA4MWIyNjNiYjVlOGMiLCJlbWFpbCI6InVzZXI5NTI3QGV4YW1wbGUuY29tIiwiaWF0IjoxNzEwNDY3MTQyLCJleHAiOjE3MTA1NTM1NDJ9.zv_S5ophuBO9I6y9iW4sHkUc9S3hm6gvcyT1tq64_so",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/voucher/customer/info",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"voucher",
+						"customer",
+						"info"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/voucher/redeem/:voucherId",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWYyNjkyMmIxMjA4MWIyNjNiYjVlOGMiLCJlbWFpbCI6InVzZXI5NTI3QGV4YW1wbGUuY29tIiwiaWF0IjoxNzEwNDY3MTQyLCJleHAiOjE3MTA1NTM1NDJ9.zv_S5ophuBO9I6y9iW4sHkUc9S3hm6gvcyT1tq64_so",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/voucher/redeem/:voucherId",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"voucher",
+						"redeem",
+						":voucherId"
+					],
+					"variable": [
+						{
+							"key": "voucherId",
+							"value": "65f29311569f44994fabc6eb"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "id",
+			"value": "1"
+		},
+		{
+			"key": "base_url",
+			"value": "https://postman-rest-api-learner.glitch.me/"
+		}
+	]
+}

@@ -1,0 +1,23 @@
+{
+  "name": "capstone-project-9900f16abinchicken",
+  "version": "1.0.0",
+  "description": "<p align=\"center\">\r   <a href=\"[https://github.com/unsw-cse-comp99-3900-24t1/capstone-project-9900f16abinchicken/tree/main\"><img src=\"https://github.com/unsw-cse-comp99-3900-24t1/capstone-project-9900f16abinchicken/blob/main/public/assets/stiker.png\" width=\"200\" height=\"200\" /></a>",
+  "main": "index.js",
+  "directories": {
+    "doc": "doc",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "antd": "^5.15.2",
+    "aws-sdk": "^2.1599.0",
+    "geolib": "^3.3.4",
+    "murmurhash": "^2.0.1",
+    "uuid": "^9.0.1"
+  }
+}
