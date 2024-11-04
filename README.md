@@ -12,8 +12,8 @@ External interfaces: Gemini API, Google Map API, AWS SNS
 ### Usage
 
 ```shell
-git clone https://github.com/unsw-cse-comp99-3900-24t1/capstone-project-9900f16abinchicken.git
-cd capstone-project-9900f16abinchicken
+git clone https://github.com/unsw-cse-comp99-3900-24t1/capstone-project-9900f16abinchicken.git](https://github.com/Nilyang404/yumyum.git
+cd yumyum
 cd backend
 npm install
 node ./index.js
