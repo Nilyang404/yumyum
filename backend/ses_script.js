@@ -15,7 +15,7 @@ const client = new SESClient({
   },
 })
 
-const devTeam = ['z5356414@ad.unsw.edu.au']
+const devTeam = ['Your email']
 
 const eateries = [
   {
